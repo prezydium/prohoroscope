@@ -11,8 +11,16 @@ public class App {
         System.out.println("Wprowadź swój znak zodiaku:");
         String userInput = sc.next();
         String requestResult = Connector.getPage(userInput);
-        if (requestResult.equals(Connector.NOT_FOUND)){
-            System.out.println(requestResult);
+        String horoscopeMessage = "";
+        if (!requestResult.equals(Connector.NOT_FOUND)){
+            horoscopeMessage = HoroscopeExtractor.getHoroscopeText(requestResult);
         }
+        System.out.println(horoscopeMessage);
+    }
+
+    private static void testHoroscopeExtractor(){
+        String horoscopeText = HoroscopeExtractor.getHoroscopeText("TRALALALA LALA!");
+        System.out.println(horoscopeText);
+
     }
 }
